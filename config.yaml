@@ -3,12 +3,12 @@ model:
   provider: custom
   base_url: http://host.docker.internal:11434/v1
   api_key: ollama
-  context_length: 65536
+  context_length: 8192
 
 auxiliary:
   compression:
     model: qwen2.5:14b
-    context_length: 65536
+    context_length: 8192
 
 max_turns: 90
 
@@ -19,3 +19,4 @@ platforms:
     enabled: true
     extra:
       host: 0.0.0.0
+      key: hermes-agent-key

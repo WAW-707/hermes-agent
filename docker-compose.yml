@@ -5,6 +5,7 @@ services:
     command: gateway run
     volumes:
       - C:/Users/kaher.WAW707/.hermes:/opt/data
+      - C:/Users/kaher.WAW707/hermes/agent/model_metadata.py:/opt/hermes/agent/model_metadata.py
     environment:
       - HERMES_HOME=/opt/data
       - PATH=/opt/hermes/.venv/bin:/opt/data/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -20,6 +21,7 @@ services:
     command: dashboard --host 0.0.0.0 --port 9119 --insecure
     volumes:
       - C:/Users/kaher.WAW707/.hermes:/opt/data
+      - C:/Users/kaher.WAW707/hermes/agent/model_metadata.py:/opt/hermes/agent/model_metadata.py
     environment:
       - HERMES_HOME=/opt/data
       - PATH=/opt/hermes/.venv/bin:/opt/data/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
