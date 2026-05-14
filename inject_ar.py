@@ -1,0 +1,91 @@
+import re
+import json
+
+with open('c:/Users/kaher.WAW707/hermes/webui/static/i18n.js', 'r', encoding='utf-8') as f:
+    content = f.read()
+
+ar_locale = '''
+  ar: {
+    offline_title: 'فقدان الاتصال',
+    offline_browser_detail: 'متصفحك يفيد بأن جهازك غير متصل بالإنترنت.',
+    offline_network_detail: 'لا يمكن الوصول إلى هيرميس من هذا المتصفح حالياً.',
+    offline_autorefresh: 'سأقوم بتحديث هذه الصفحة تلقائياً عندما يمكن الوصول إلى هيرميس مرة أخرى.',
+    offline_check_now: 'تحقق الآن',
+    offline_checking: 'يتم التحقق...',
+    offline_stream_waiting: 'فقدان الاتصال. في انتظار التحديث...',
+    _lang: 'ar',
+    _label: 'العربية',
+    _speech: 'ar-SA',
+    cancelling: 'جاري الإلغاء...',
+    cancel_failed: 'فشل الإلغاء: ',
+    mic_denied: 'تم رفض الوصول إلى الميكروفون. تحقق من أذونات المتصفح.',
+    mic_no_speech: 'لم يتم اكتشاف صوت. حاول مرة أخرى.',
+    mic_network: 'التعرف على الصوت غير متاح.',
+    mic_error: 'خطأ في إدخال الصوت: ',
+    voice_dictate: 'إملاء',
+    voice_dictate_active: 'إيقاف الإملاء',
+    voice_mode_toggle: 'الوضع الصوتي',
+    voice_mode_toggle_active: 'الخروج من الوضع الصوتي',
+    voice_listening: 'يستمع...',
+    voice_speaking: 'يتحدث...',
+    voice_thinking: 'يفكر...',
+    voice_error: 'الصوت غير مدعوم في هذا المتصفح',
+    voice_mode_active: 'الوضع الصوتي مفعل',
+    voice_mode_off: 'الوضع الصوتي متوقف',
+    session_imported: 'تم استيراد الجلسة',
+    import_failed: 'فشل الاستيراد: ',
+    import_invalid_json: 'JSON غير صالح',
+    image_pasted: 'تم لصق الصورة: ',
+    edit_message: 'تعديل الرسالة',
+    regenerate: 'إعادة توليد الرد',
+    copy: 'نسخ',
+    copied: 'تم النسخ!',
+    copy_failed: 'فشل النسخ',
+    you: 'أنت',
+    thinking: 'يفكر',
+    expand_all: 'توسيع الكل',
+    collapse_all: 'طي الكل',
+    untitled: 'بدون عنوان',
+    n_messages: (n) => `${n} رسائل`,
+    load_older_messages: '↑ قم بالتمرير لأعلى أو انقر لتحميل رسائل أقدم',
+    session_jump_start: 'البداية',
+    session_jump_end: 'النهاية',
+    model_unavailable: ' (غير متاح)',
+    model_search_placeholder: 'البحث عن نماذج...',
+    model_search_no_results: 'لم يتم العثور على نماذج',
+    cmd_clear: 'مسح رسائل المحادثة',
+    cmd_model: 'تبديل النموذج (مثال: /model gpt-4o)',
+    cmd_workspace: 'تبديل مساحة العمل بالاسم',
+    cmd_terminal: 'فتح طرفية مساحة العمل',
+    cmd_new: 'بدء جلسة دردشة جديدة',
+    cmd_usage: 'تبديل عرض استخدام الرموز (Tokens)',
+    cmd_theme: 'تبديل المظهر',
+    cmd_personality: 'تبديل شخصية الوكيل',
+    cmd_skills: 'سرد مهارات هيرميس المتاحة',
+    available_commands: 'الأوامر المتاحة:',
+    type_slash: 'اكتب / لرؤية الأوامر',
+    conversation_cleared: 'تم مسح المحادثة',
+    tab_chat: 'الدردشة',
+    tab_tasks: 'المهام',
+    tab_skills: 'المهارات',
+    tab_memory: 'الذاكرة',
+    tab_workspaces: 'المساحات',
+    tab_profiles: 'الملفات الشخصية',
+    tab_settings: 'الإعدادات',
+    new_conversation: 'محادثة جديدة',
+    filter_conversations: 'تصفية المحادثات...',
+    settings_title: 'الإعدادات',
+    settings_save_btn: 'حفظ الإعدادات',
+    settings_label_language: 'اللغة',
+    empty_title: 'كيف يمكنني المساعدة؟',
+    empty_subtitle: 'اسأل أي شيء، شغل أوامر، استكشف الملفات، أو أدر مهامك المجدولة.',
+  },
+'''
+
+if '  ar: {' not in content:
+    content = content.replace('const LOCALES = {', 'const LOCALES = {' + ar_locale)
+
+with open('c:/Users/kaher.WAW707/hermes/webui/static/i18n.js', 'w', encoding='utf-8') as f:
+    f.write(content)
+
+print("Injected successfully!")

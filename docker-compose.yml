@@ -15,17 +15,22 @@ services:
       - "8642:8642"
     restart: always
 
-  hermes-dashboard:
-    image: nousresearch/hermes-agent:latest
-    container_name: hermes-hermes-dashboard-1
-    command: dashboard --host 0.0.0.0 --port 9119 --insecure
-    volumes:
-      - C:/Users/kaher.WAW707/.hermes:/opt/data
-      - C:/Users/kaher.WAW707/hermes/agent/model_metadata.py:/opt/hermes/agent/model_metadata.py
-    environment:
-      - HERMES_HOME=/opt/data
-      - PATH=/opt/hermes/.venv/bin:/opt/data/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-      - API_SERVER_KEY=hermes-agent-key
+  hermes-workspace:
+    build:
+      context: ./workspace
+    container_name: hermes-workspace
     ports:
-      - "9119:9119"
+      - "3000:3000"
+    environment:
+      - HERMES_API_URL=http://hermes:8642
+    restart: always
+
+  hermes-webui:
+    build:
+      context: ./webui
+    container_name: hermes-webui
+    ports:
+      - "8787:8787"
+    volumes:
+      - C:/Users/kaher.WAW707/.hermes:/home/hermeswebui/.hermes
     restart: always
